@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button"
 
 export function ContactSection() {
   return (
+<<<<<<< HEAD
     <section id="contact" className="bg-primary py-16 scroll-mt-24">
+=======
+    <section id="contact" className="bg-primary py-16">
+>>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
       <div className="container mx-auto px-4">
         <div className="text-left mb-12">
           <h2 className="text-4xl font-bold text-primary-foreground mb-4">Welcome to Contact Us ! </h2>

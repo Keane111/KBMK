@@ -6,7 +6,11 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'KBMK BINUS University',
+<<<<<<< HEAD
   description: 'Keluarga Besar Mahasiswa Khonghucu BINUS University',
+=======
+  description: 'Komunitas Buddhis Mahasiswa Khonghucu BINUS University',
+>>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
 }
 
 export default function RootLayout({

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client"
 
 import { useState } from "react"
@@ -16,10 +17,17 @@ type Article = {
 
 export function ArticlesSection() {
   const [articles, setArticles] = useState<Article[]>([
+=======
+import { Card, CardContent } from "@/components/ui/card"
+
+export function ArticlesSection() {
+  const articles = [
+>>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
     {
       id: 1,
       title: "Event name",
       description:
+<<<<<<< HEAD
         "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore...",
       image: "https://via.placeholder.com/400x200",
       link: "/articles/1",
@@ -47,11 +55,38 @@ export function ArticlesSection() {
 
   return (
     <section id="articles" className="bg-primary py-16 scroll-mt-24">
+=======
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+      id: 2,
+      title: "Event name",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+      id: 3,
+      title: "Event name",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    {
+      id: 4,
+      title: "Event name",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+  ]
+
+  return (
+    <section id="articles" className="bg-primary py-16">
+>>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
       <div className="container mx-auto px-4">
         <div className="text-left mb-12">
           <h2 className="text-4xl font-bold text-white mb-4">Articles</h2>
         </div>
 
+<<<<<<< HEAD
         {/* Upload Form */}
         <div className="bg-white p-6 rounded-lg mb-10">
           <h3 className="text-lg font-bold mb-4">Upload Artikel</h3>
@@ -111,6 +146,19 @@ export function ArticlesSection() {
                 </CardContent>
               </Card>
             </a>
+=======
+        <div className="grid md:grid-cols-2 gap-6">
+          {articles.map((article) => (
+            <Card key={article.id} className="bg-background">
+              <CardContent className="p-6">
+                <div className="bg-muted rounded-lg h-48 flex items-center justify-center mb-4">
+                  <span className="text-muted-foreground font-medium">Upload Images</span>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3">{article.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{article.description}</p>
+              </CardContent>
+            </Card>
+>>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
           ))}
         </div>
       </div>
