@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // File: C:\Users\USER\Pictures\KBMK-master\KBMK-master\src\app\page.tsx
-=======
-// File: C:\Users\upgra\Documents\BINUS\KBMK\KBMK Web\KBMK\src\app\page.tsx
->>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

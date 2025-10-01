@@ -1,167 +1,112 @@
-<<<<<<< HEAD
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { useEffect, useState } from "react";
 
-type Article = {
-  id: number
-  title: string
-  description: string
-  image: string
-  link: string
+interface Article {
+  id: string;
+  title: string;
+  content: string;
+  category: string;
+  image_url: string;
+  created_at: string;
 }
 
-export function ArticlesSection() {
-  const [articles, setArticles] = useState<Article[]>([
-=======
-import { Card, CardContent } from "@/components/ui/card"
+export default function ArticleSection() {
+  const [articles, setArticles] = useState<Article[]>([]);
 
-export function ArticlesSection() {
-  const articles = [
->>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
-    {
-      id: 1,
-      title: "Event name",
-      description:
-<<<<<<< HEAD
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore...",
-      image: "https://via.placeholder.com/400x200",
-      link: "/articles/1",
-    },
-  ])
+  useEffect(() => {
+    fetch("/api/articles")
+      .then((res) => res.json())
+      .then((data) => setArticles(data))
+      .catch((err) => console.error("❌ Gagal ambil artikel:", err));
+  }, []);
 
-  const [newArticle, setNewArticle] = useState({
-    title: "",
-    description: "",
-    image: "",
-    link: "",
-  })
-
-  const handleUpload = () => {
-    if (!newArticle.title || !newArticle.description || !newArticle.image) return
-    setArticles([
-      ...articles,
-      {
-        id: Date.now(),
-        ...newArticle,
-      },
-    ])
-    setNewArticle({ title: "", description: "", image: "", link: "" })
-  }
+  // Ambil 4 artikel terbaru saja
+  const latestArticles = articles.slice(0, 4);
+  const mainArticle = latestArticles[0];
+  const sideArticles = latestArticles.slice(1, 4);
 
   return (
-    <section id="articles" className="bg-primary py-16 scroll-mt-24">
-=======
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: 2,
-      title: "Event name",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: 3,
-      title: "Event name",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: 4,
-      title: "Event name",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-  ]
+  <section
+  className="py-16 px-6"
+  style={{ backgroundColor: "#404040ff", background: "#404040ff !important" }}
+>
 
-  return (
-    <section id="articles" className="bg-primary py-16">
->>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
-      <div className="container mx-auto px-4">
-        <div className="text-left mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">Articles</h2>
-        </div>
+      <div className="max-w-6xl mx-auto">
+  
+       
 
-<<<<<<< HEAD
-        {/* Upload Form */}
-        <div className="bg-white p-6 rounded-lg mb-10">
-          <h3 className="text-lg font-bold mb-4">Upload Artikel</h3>
-          <Input
-            type="text"
-            placeholder="Judul artikel"
-            value={newArticle.title}
-            onChange={(e) => setNewArticle({ ...newArticle, title: e.target.value })}
-            className="mb-3"
-          />
-          <Textarea
-            placeholder="Isi artikel"
-            value={newArticle.description}
-            onChange={(e) => setNewArticle({ ...newArticle, description: e.target.value })}
-            className="mb-3"
-          />
-          <Input
-            type="text"
-            placeholder="Link gambar (URL)"
-            value={newArticle.image}
-            onChange={(e) => setNewArticle({ ...newArticle, image: e.target.value })}
-            className="mb-3"
-          />
-          <Input
-            type="text"
-            placeholder="Link artikel (opsional)"
-            value={newArticle.link}
-            onChange={(e) => setNewArticle({ ...newArticle, link: e.target.value })}
-            className="mb-3"
-          />
-          <Button onClick={handleUpload}>Tambah Artikel</Button>
-        </div>
-
-        {/* Articles Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {articles.map((article) => (
-            <a
-              key={article.id}
-              href={article.link || "#"}
-              className="transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
-            >
-              <Card className="bg-background">
-                <CardContent className="p-6">
-                  <div className="rounded-lg h-48 flex items-center justify-center mb-4 overflow-hidden">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    {article.title}
+        {latestArticles.length === 0 ? (
+          <p className="text-center text-gray-500">Belum ada artikel 😔</p>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* 🥇 Artikel utama (terbaru) */}
+            {mainArticle && (
+              <a
+                href={`/articles/${mainArticle.id}`}
+                className="block bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:scale-[1.02] transition-transform duration-300"
+              >
+                <img
+                  src={mainArticle.image_url || "/placeholder.jpg"}
+                  alt={mainArticle.title}
+                  className="w-full h-72 object-cover"
+                />
+                <div className="p-6">
+                  <span className="text-red-600 font-semibold uppercase text-sm">
+                    {mainArticle.category}
+                  </span>
+                  <h3 className="text-2xl font-bold mt-2 mb-3">
+                    {mainArticle.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {article.description.split(".")[0]}.
+                  <p className="text-gray-700 text-sm">
+                    {mainArticle.content.split(" ").slice(0, 30).join(" ")}...
                   </p>
-                </CardContent>
-              </Card>
-            </a>
-=======
-        <div className="grid md:grid-cols-2 gap-6">
-          {articles.map((article) => (
-            <Card key={article.id} className="bg-background">
-              <CardContent className="p-6">
-                <div className="bg-muted rounded-lg h-48 flex items-center justify-center mb-4">
-                  <span className="text-muted-foreground font-medium">Upload Images</span>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">{article.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{article.description}</p>
-              </CardContent>
-            </Card>
->>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
-          ))}
+              </a>
+            )}
+
+            {/* 📰 3 Artikel lainnya */}
+            <div className="grid grid-cols-1 gap-6">
+              {sideArticles.map((article) => (
+                <a
+                  key={article.id}
+                  href={`/articles/${article.id}`}
+                  className="block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:scale-[1.02] transition-transform duration-300"
+                >
+                  <div className="flex">
+                    <img
+                      src={article.image_url || "/placeholder.jpg"}
+                      alt={article.title}
+                      className="w-32 h-32 object-cover"
+                    />
+                    <div className="p-4">
+                      <span className="text-red-600 font-semibold uppercase text-xs">
+                        {article.category}
+                      </span>
+                      <h4 className="text-lg font-semibold mt-1 mb-2">
+                        {article.title}
+                      </h4>
+                      <p className="text-gray-600 text-sm line-clamp-2">
+                        {article.content.split(" ").slice(0, 20).join(" ")}...
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 📁 Tombol ke halaman semua artikel */}
+        <div className="text-center mt-12">
+          <a
+            href="/articles"
+            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            📚 Lihat Semua Artikel
+          </a>
         </div>
       </div>
     </section>
-  )
+  );
 }

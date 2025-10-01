@@ -23,11 +23,7 @@ export function EventsSection() {
   ]
 
   return (
-<<<<<<< HEAD
     <section id="events" className="bg-background py-16 scroll-mt-24">
-=======
-    <section id="events" className="bg-background py-16">
->>>>>>> fe7221a818ac4f912eaf66d00ad65d7595b34aad
       <div className="container mx-auto px-4">
         <div className="text-left mb-12">
           <h2 className="text-4xl font-bold text-black mb-4">Events</h2>
